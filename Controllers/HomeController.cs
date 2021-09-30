@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ChooseBookApp.Models;
 
+
+
 namespace ChooseBookApp.Controllers
 {
     public class HomeController : Controller
@@ -20,7 +22,7 @@ namespace ChooseBookApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(Repository.Books);
         }
         [Route("/privacy")]
         public IActionResult Privacy()
