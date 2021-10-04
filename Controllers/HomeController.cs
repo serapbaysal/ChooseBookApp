@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ChooseBookApp.Models;
+using ChooseBookApp.Data;
 
 
 
@@ -22,8 +23,21 @@ namespace ChooseBookApp.Controllers
 
         public IActionResult Index()
         {
-            return View(Repository.Books);
+            BookCategoryModel model = new BookCategoryModel();
+            model.Categories = CategoryRepository.Categories;
+            model.Books = BookRepository.Books;
+            return View(model);
         }
+        
+        public IActionResult Details(int id)
+        {
+            BookCategoryModel model = new BookCategoryModel();
+            model.Categories = CategoryRepository.Categories;
+            model.Book = BookRepository.GetById(id);
+          
+          return View(model);
+        }
+
         [Route("/privacy")]
         public IActionResult Privacy()
         {
