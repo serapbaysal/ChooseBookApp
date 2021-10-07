@@ -1,9 +1,10 @@
-@model BookCategoryModel
+@model Book
 
 
 <div class="row">
     <div class="col-md-3">
-        @Html.Partial("_menu", Model.Categories)
+       
+        @await Component.InvokeAsync("CategoryMenu")
     </div>
     <div class="col-md-9">
         <div class="card-body">
@@ -11,22 +12,22 @@
                 <div class="card mb-3">
 
                     <div class="col-md-3">
-                        <img src="~/img/@Model.Book.ImageUrl" alt="" class="card-img">
+                        <img src="~/img/@Model.ImageUrl" alt="" class="card-img">
 
                     </div>
                     <div class="col-md-9">
 
                         <h5 class="card-title">
-                            <a asp-action="Details" asp-controller="Home" asp-route-id="@Model.Book.Id">@Model.Book.Name</a>
+                            <a asp-action="Details" asp-controller="Home" asp-route-id="@Model.Id">@Model.Name</a>
                         </h5>
                         <h5 class="card-title">
-                            @Model.Book.Author
+                            @Model.Author
                         </h5>
                         <p class="card-text">
-                            @Model.Book.Description
+                            @Model.Description
                         </p>
                         <p class="card-text">
-                            @Model.Book.Pages
+                            @Model.Pages
                         </p>
                         <p class="card-text">
                             <small class="text-muted">

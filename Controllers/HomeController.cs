@@ -21,21 +21,21 @@ namespace ChooseBookApp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? id)
         {
-            BookCategoryModel model = new BookCategoryModel();
-            model.Categories = CategoryRepository.Categories;
-            model.Books = BookRepository.Books;
-            return View(model);
+            var books = BookRepository.Books;
+            if(id != null) {
+                books = books.Where( i => i.CategoryId == id).ToList();
+            }
+
+            return View(books);
         }
         
         public IActionResult Details(int id)
         {
-            BookCategoryModel model = new BookCategoryModel();
-            model.Categories = CategoryRepository.Categories;
-            model.Book = BookRepository.GetById(id);
+           
           
-          return View(model);
+          return View(BookRepository.GetById(id));
         }
 
         [Route("/privacy")]

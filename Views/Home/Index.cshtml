@@ -1,12 +1,13 @@
-﻿@model BookCategoryModel;
+﻿@model IEnumerable<Book>;
 
 
 <div class="row">
     <div class="col-md-3">
-        @Html.Partial("_menu", Model.Categories)
+       
+        @await Component.InvokeAsync("CategoryMenu")
     </div>
     <div class="col-md-9">
-        @Html.Partial("_books",Model.Books)
+        @Html.Partial("_books",Model)
     </div>
 
 </div>
